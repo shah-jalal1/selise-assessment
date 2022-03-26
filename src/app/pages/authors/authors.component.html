@@ -1,1 +1,48 @@
-<p>authors works!</p>
+<app-authors-list
+  [allAuthors]="allAuthors"
+>
+
+</app-authors-list>
+
+<section class="admin-data-sec">
+  <div class="top-data-header">
+    <div class="title">
+      <h2>All Authors</h2>
+    </div>
+
+    <div class="action">
+
+    </div>
+
+  </div> <!-- END TOP DATA HEADER -->
+
+  <hr class="center-square">
+
+  <div class="table-wrapper space">
+
+    </div> <!-- END Table Action -->
+
+
+  <mat-grid-list cols="4" rowHeight="2:1" >
+    <mat-grid-tile  *ngFor="let data of allAuthors | paginate: { itemsPerPage: productsPerPage, currentPage: currentPage, totalItems: totalProducts } ; let i = index">
+      <app-authors-list
+        [allAuthors]="data"></app-authors-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="pagination-container">
+    <pagination-controls
+      class="data-pagination"
+      [autoHide]="true"
+      [maxSize]="15"
+      (pageChange)="onPageChanged($event)">
+    </pagination-controls>
+  </div>     <!-- END PAGINATION -->
+
+
+  <!-- LOADING TEMPLATE -->
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.5)" size="medium" color="#fff" type="ball-atom" [fullScreen]="false">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+
+</section>
